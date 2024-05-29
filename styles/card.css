@@ -1,0 +1,23 @@
+.card {
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    transition: all .5s ease-in;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card,
+.card-img {
+    width: 300px;
+}
+
+.card-img img {
+    width: 100%;
+
+}
+
+.card-description p {
+    margin: 20px;
+}
