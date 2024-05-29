@@ -1,11 +1,10 @@
-const cartItemsList = document.getElementById('cart-items');
 document.addEventListener('DOMContentLoaded', () => {
     const filters = document.querySelectorAll('.filter');
     const catalogItems = document.querySelectorAll('.catalog-item');
     const filterMenu = document.querySelector('.filter-menu');
     const toggleFiltersButton = document.getElementById('toggle-filters');
     const clearFiltersButton = document.getElementById('clear-filters');
-    //  const cartItemsList = document.getElementById('cart-items');
+    const cartItemsList = document.getElementById('cart-items');
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
     toggleFiltersButton.addEventListener('click', () => {
