@@ -2,85 +2,81 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #001A23;
 }
 
 body {
     font-family: "Roboto", sans-serif;
 }
 
-a {
-    text-decoration: none;
-    transition: all .5s ease-in-out;
-}
-
-a:hover {
-    opacity: .6;
-    transform: scale(1.1);
-}
-
-nav {
-    display: none;
-}
-
-header,
-footer {
-    height: 80px;
-    border: 1px solid gray;
+header,footer{
+    display: flex;
+    background-color: #e6e6e6;
 }
 
 header {
-    background-color: #e6e6e6;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    min-height: 60px;
+    justify-content: flex-end;
     align-items: center;
-    padding: 10px;
+    box-shadow: 0 1px 8px #ddd;
 }
 
-header button {
-    border: none;
-    background-color: transparent;
-    width: 45px;
+footer{
+    height: 60px;
+    justify-content:space-between;
+    box-shadow: 0 -1px 8px #ddd;
 }
 
-header button img {
-    max-width: 100%;
+main{
+    min-height: calc(100vh - 120px);
 }
 
-footer {
+
+/* Add a black background color to the top navigation */
+.topnav {
     background-color: #e6e6e6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 400;
+    overflow: hidden;
 }
 
-main {
-    background-color: #ffffff;
-    margin: 10px 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    min-height: calc(100vh - 160px);
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: #011107;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-@media (min-width : 800px) {
-    header button {
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+    background-color: #cececc;
+    color: #011107;
+}
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #29392b;
+    color: #e6e6e6;
+    font-style: bold;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+#icon {
+    display: none;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+    div.topnav {
         display: none;
     }
-
-    nav {
-        display: flex;
-        gap: 20px;
-    }
-}
-
-@media (max-width : 450px) {
-
-    .card,
-    .card-img {
-        width: 400px;
+    #icon {
+        float: right;
+        display: block;
     }
 }
