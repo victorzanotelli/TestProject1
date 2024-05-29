@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +8,74 @@
     <link rel="stylesheet" href="styles/card.css">
     <title>Catalogue</title>
 </head>
+
 <body>
     <header>
         <button type="button" id="icon">
             <img src="img/burger.png" alt="icon burger">
-        </button>    
-        <nav>      
-            <div class="topnav">       
+        </button>
+        <nav>
+            <div class="topnav">
                 <a href="#">Accueil</a>
                 <a href="#" class="active">Catalogue</a>
                 <a href="#">Connexion</a>
                 <a href="#">Panier</a>
-            </div>  
+            </div>
         </nav>
         <!-- barre de navigation mobile -->
     </header>
 
     <main>
-
+        <button id="toggle-filters">Afficher les filtres</button>
+        <div class="filter-menu">
+            <div class="filter-category">
+                <h3>Catégorie</h3>
+                <label><input type="checkbox" class="filter" data-filter="category1"> Catégorie 1</label>
+                <label><input type="checkbox" class="filter" data-filter="category2"> Catégorie 2</label>
+                <label><input type="checkbox" class="filter" data-filter="category3"> Catégorie 3</label>
+            </div>
+            <div class="filter-category">
+                <h3>Prix</h3>
+                <label><input type="checkbox" class="filter" data-filter="price-low"> Bas</label>
+                <label><input type="checkbox" class="filter" data-filter="price-medium"> Moyen</label>
+                <label><input type="checkbox" class="filter" data-filter="price-high"> Haut</label>
+            </div>
+            <button id="clear-filters">Désactiver les filtres</button>
+        </div>
+    
+        <div class="catalog">
+            <div class="catalog-item" data-category="category1" data-price="price-low">
+                Article 1
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <div class="catalog-item" data-category="category2" data-price="price-medium">
+                Article 2
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <div class="catalog-item" data-category="category3" data-price="price-high">
+                Article 3
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <div class="catalog-item" data-category="category1" data-price="price-medium">
+                Article 4
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <div class="catalog-item" data-category="category2" data-price="price-low">
+                Article 5
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+        </div>
+    
+        <div class="cart">
+            <h2>Panier</h2>
+            <ul id="cart-items"></ul>
+        </div>
     </main>
 
     <footer>
-        
+
     </footer>
+    <script src="scripts/card.js"></script>
 </body>
+
 </html>
