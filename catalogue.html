@@ -26,47 +26,56 @@
     </header>
 
     <main>
-        <button id="toggle-filters">Afficher les filtres</button>
-        <div class="filter-menu">
-            <div class="filter-category">
-                <h3>Marque</h3>
-                <label><input type="checkbox" class="filter" data-filter="acer"> Acer</label>
-                <label><input type="checkbox" class="filter" data-filter="asus"> Asus</label>
-                <label><input type="checkbox" class="filter" data-filter="dell"> Dell</label>
-                <label><input type="checkbox" class="filter" data-filter="lenovo"> Lenovo</label>
+        <div class="filter-area">
+            <div class="filter-btn">
+                <button id="toggle-filters" class="btn">Afficher les filtres</button>
+                <!-- <button id="clear-filters" class="btn">Désactiver les filtres</button>    -->
             </div>
-            <div class="filter-category">
-                <h3>Performance</h3>
-                <label><input type="checkbox" class="filter" data-filter="price-low"> Entrée de gamme</label>
-                <label><input type="checkbox" class="filter" data-filter="price-medium"> Milieu de gamme</label>
-                <label><input type="checkbox" class="filter" data-filter="price-high"> Haut de gamme</label>
+            <div class="filter-menu">
+                <div class="filter-category">
+                    <h3>Marque</h3>
+                    <label><input type="checkbox" class="filter" data-filter="acer"> Acer</label>
+                    <label><input type="checkbox" class="filter" data-filter="asus"> Asus</label>
+                    <label><input type="checkbox" class="filter" data-filter="dell"> Dell</label>
+                    <label><input type="checkbox" class="filter" data-filter="lenovo"> Lenovo</label>
+                </div>
+                <div class="filter-category">
+                    <h3>Performance</h3>
+                    <label><input type="checkbox" class="filter" data-filter="price-promo"> Promo</label>
+                    <label><input type="checkbox" class="filter" data-filter="price-low"> Entrée de gamme</label>
+                    <label><input type="checkbox" class="filter" data-filter="price-medium"> Milieu de gamme</label>
+                    <label><input type="checkbox" class="filter" data-filter="price-high"> Haut de gamme</label>
+                </div>
+
             </div>
-            <button id="clear-filters">Désactiver les filtres</button>
-        </div>
-    
-        <div class="catalog">
-            <div class="catalog-item" data-category="acer" data-price="price-low">
-                Article 1
-                <button class="add-to-cart">Ajouter au panier</button>
-            </div>
-            <div class="catalog-item" data-category="asus" data-price="price-medium">
-                Article 2
-                <button class="add-to-cart">Ajouter au panier</button>
-            </div>
-            <div class="catalog-item" data-category="dell" data-price="price-high">
-                Article 3
-                <button class="add-to-cart">Ajouter au panier</button>
-            </div>
-            <div class="catalog-item" data-category="acer" data-price="price-medium">
-                Article 4
-                <button class="add-to-cart">Ajouter au panier</button>
-            </div>
-            <div class="catalog-item" data-category="asus" data-price="price-low">
-                Article 5
-                <button class="add-to-cart">Ajouter au panier</button>
+            <div class="filter-btn">
+                <button id="clear-filters" class="btn">Désactiver les filtres</button>
             </div>
         </div>
-    
+        <div class="main-container">
+            <div class="catalog">
+                <div class="catalog-item" data-category="acer" data-price="price-low">
+                    Article 1
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+                <div class="catalog-item" data-category="asus" data-price="price-medium">
+                    Article 2
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+                <div class="catalog-item" data-category="dell" data-price="price-high">
+                    Article 3
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+                <div class="catalog-item" data-category="acer" data-price="price-medium">
+                    Article 4
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+                <div class="catalog-item" data-category="asus" data-price="price-low">
+                    Article 5
+                    <button class="add-to-cart">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
         <div class="cart">
             <h2>Panier</h2>
             <ul id="cart-items"></ul>
