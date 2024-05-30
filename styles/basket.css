@@ -105,3 +105,17 @@ cart-btn cart-button-add:hover {
   color: red !important;
   cursor: pointer;
 }
+.basket_footer{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.basket_header{
+  display: flex;
+  justify-content:right;
+
+}
+
+
