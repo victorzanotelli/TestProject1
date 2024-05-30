@@ -1,0 +1,107 @@
+.clear {
+  clear: both;
+}
+
+.products {
+  width: 75%;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items:center;;
+  justify-content: space-between;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  gap:20px;
+}
+ul{
+  width: 100%;
+}
+section {
+  display : inline-flex ;
+width: 100%;
+}
+
+
+.cart-product-info {
+  
+  align-content: center;
+  justify-content: center;
+}
+
+.cart-product-actions {
+  
+  
+  align-content: center;
+  justify-content: center;
+
+}
+
+
+
+img {
+  /*float: left;*/
+  margin: 0px 15px 0px 0px;
+}
+
+cart-btn cart-button-add {
+  margin: 15px 0px 0px 0px;
+  background-color: rgb(252, 4, 223);
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+cart-btn cart-button-remove{
+  margin: 15px 0px 0px 0px;
+  background-color: rgb(252, 4, 223);
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+art-btn cart-button-remove::hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+cart-btn cart-button-add:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+
+
+.basket-container {
+  width: 100%;
+  background-color: darkviolet;
+  display: flex;
+  /*position:  fixed;*/
+  top: 75px;
+  right: 15px;
+
+  height: 50px;
+  border-radius: 30px;
+  background-color: rgb(245, 241, 241);
+  color: black;
+  padding: 15px;
+  transition: width 0.5s, height 0.5s, top 0.2s;
+}
+
+ 
+
+.basket-icon {
+  color: white;
+  position: absolute;
+  top: 13px;
+  right: 17px;
+}
+
+&:hover {
+  color: red !important;
+  cursor: pointer;
+}
