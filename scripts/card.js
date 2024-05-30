@@ -7,9 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartItemsList = document.getElementById('cart-items');
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
+    function init(){
+        sessionStorage.setItem("mykey","myvalue");
+        clearFiltersButton.style.display = "none";
+    }
+
+    init();
+
     toggleFiltersButton.addEventListener('click', () => {
         if (filterMenu.style.display === 'none' || filterMenu.style.display === '') {
-            filterMenu.style.display = 'block';
+            filterMenu.style.display = 'flex';
             toggleFiltersButton.textContent = "Masquer les filtres";
         } else {
             filterMenu.style.display = 'none';
@@ -43,6 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemPrices = item.dataset.price.split(' ');
             const isCategoryMatch = activeFilters.some(filter => itemCategories.includes(filter));
             const isPriceMatch = activeFilters.some(filter => itemPrices.includes(filter));
+            
+            if(activeFilters.length === 0){
+                clearFiltersButton.style.display = "none";
+            }
+            else{
+                clearFiltersButton.style.display = "flex";
+            }
+
+            
             if (isCategoryMatch || isPriceMatch || activeFilters.length === 0) {
                 item.style.display = '';
             } else {
