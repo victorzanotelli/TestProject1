@@ -72,6 +72,23 @@ main{
     display: none;
 }
 
+.btn{
+    
+    padding: 10px 20px;
+    background-color: #e6e6e6;
+    min-width: 145px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display : flex;
+}
+
+.btn:hover {
+    background-color: #7A9E7E;
+    color :white;
+}
+
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
     div.topnav {
