@@ -35,13 +35,14 @@ main{
     justify-content: center;
 }
 
-/* Add a black background color to the top navigation */
+/***********************************************/
+/****************  TOP-NAV  ********************/
+/***********************************************/
 .topnav {
     background-color: #e6e6e6;
     overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
     float: left;
     display: block;
@@ -52,26 +53,27 @@ main{
     font-size: 17px;
 }
 
-
-/* Change the color of links on hover */
 .topnav a:hover {
     background-color: #29392b;
     color: #e6e6e6;
     font-style: bold;
 }
 
-/* Add an active class to highlight the current page */
 .topnav a.active {
     background-color: #7A9E7E;
     color: #e6e6e6;
 }
 
-
-/* Hide the link that should open and close the topnav on small screens */
+/***********************************************/
+/*****************  BURGER  ********************/
+/***********************************************/
 #icon {
     display: none;
 }
 
+/***********************************************/
+/****************  BUTTON  ********************/
+/***********************************************/
 .btn{
     
     padding: 10px 20px;
@@ -89,7 +91,9 @@ main{
     color :white;
 }
 
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+/***********************************************/
+/**************  RESPONSIVE  *******************/
+/***********************************************/
 @media screen and (max-width: 600px) {
     div.topnav {
         display: none;
@@ -97,5 +101,9 @@ main{
     #icon {
         float: right;
         display: block;
+    }
+    .main-container .catalog{
+        border: none;
+        box-shadow: none;
     }
 }
