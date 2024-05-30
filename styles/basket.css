@@ -105,3 +105,36 @@ cart-btn cart-button-add:hover {
   color: red !important;
   cursor: pointer;
 }
+.basket_footer{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.basket_header{
+  display: flex;
+  justify-content:right;
+
+}
+.btn btn-cart-back {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+btn btn-cart-order{
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
