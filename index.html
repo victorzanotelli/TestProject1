@@ -1,35 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/style.css">
-  <title>Accueil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Example</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header>
-    <button type="button" id="icon">
-      <img src="img/burger.png" alt="icon burger">
-    </button>
-    <nav>
-      <div class="topnav">
-        <a href="#" class="active">Accueil</a>
-        <a href="catalogue.html">Catalogue</a>
-        <a href="connexion.html">Connexion</a>
-        <a href="panier.html">Panier</a>
-      </div>
-    </nav>
-    <!-- barre de navigation mobile -->
-  </header>
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/download (1).jpeg" alt="Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="img/download (2).jpeg" alt="Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="img/download (3).jpeg" alt="Image 3">
+            </div>
 
-  <main>
-  </main>
+            <div class="carousel-item active">
+              <img src="img/download (1).jpeg" alt="Image 1">
+          </div>
+          <div class="carousel-item">
+              <img src="img/download (2).jpeg" alt="Image 2">
+          </div>
+          <div class="carousel-item">
+              <img src="img/download (3).jpeg" alt="Image 3">
+          </div>
+        </div>
 
-  <footer>
+        <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+        <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+    </div>
 
-  </footer>
+    <script src="test.js"></script>
 </body>
-
 </html>

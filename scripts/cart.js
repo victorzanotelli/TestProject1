@@ -72,8 +72,7 @@ function renderCart() {
   // class="basket-container"
   // create the new ul
   let newUl = document.createElement("ul");
-
-
+  newUl.classList.add("crt-lines");
   // create the lis
   for (let i = 0; i < cart.items.length; i++) {
     if (cart.items[i].amount > 0) {
@@ -93,120 +92,94 @@ function renderCart() {
   loadListeners();
 }
 
-//createCartItem()
-// create one cart item to be injected in the html
-function createCartItem(item) {
-  let containerSection = document.createElement("div");
-  containerSection.classList.add("cart-Line");
+function get_element_div(cls) {
+  let vdiv = document.createElement("div");
+  let css_b = "cart-Col";
+  let css_s = css_b + "-" + cls;
+  vdiv.classList.add(css_b);
+  vdiv.classList.add(css_s);
+  return vdiv;
+}
 
+function crt_img(item, cls) {
   let img = document.createElement("img");
-
-  img.classList.add("cart-col");
-  img.classList.add("cart-Col-img");
   img.setAttribute("alt", "image du produit " + item.id);
   img.setAttribute("src", item.imageUrl);
-  containerSection.appendChild(img);
+  let vdiv = get_element_div(cls);
+  vdiv.appendChild(img);
+  return vdiv;
+}
 
-
+function crt_info(item, cls) {
+  let vdiv = get_element_div(cls);
   let productInfodiv = document.createElement("span");
   // creating the product info
   let productInfo = document.createElement("h3");
-
   let productNameContent = document.createTextNode("Nom du produit " + item.id);
   productInfo.appendChild(productNameContent);
   //let productNameContent = document.createTextNode("Nom du produit " + item.id);
-  productInfodiv.appendChild(productInfo)
+  productInfodiv.appendChild(productInfo);
+  vdiv.appendChild(productInfodiv);
+  return vdiv;
+}
 
-  productInfodiv.classList.add("cart-Col-name");
-  containerSection.appendChild(productInfodiv);
+function crt_action(item, cls) {
+  let vdiv = get_element_div(cls);
+  vdiv.appendChild(crt_btn(item, "minus", "-"));
+  vdiv.appendChild(crt_qt(item, "qt"));
+  vdiv.appendChild(crt_btn(item, "add", "+"));
+  return vdiv;
+}
 
-
-
-
-  // creating the product actions
-  //let productActions = document.createElement("section");
-  //productActions.classList.add("cart-product-actions");
-
-  //let buttonsSection = document.createElement("section");
-
-  let removeButton = document.createElement("button");
-  removeButton.setAttribute("data-product-id", item.id);
-  removeButton.classList.add("cart-col");
-  removeButton.classList.add("cart-Col-minus");
-  removeButton.classList.add("btn");
-  let minus = document.createTextNode("-");
-  removeButton.appendChild(minus);
-  containerSection.appendChild(removeButton);
-
-
+function crt_qt(item, cls) {
+  let css_b = "cart-Col";
+  let css_s = css_b + "-" + cls;
   let amountSpan = document.createElement("span");
-  amountSpan.classList.add("cart-col");
-  amountSpan.classList.add("cart-Col-price");
+  amountSpan.classList.add(css_b);
+  amountSpan.classList.add(css_s);
   let amountContent = document.createTextNode(item.amount);
   amountSpan.appendChild(amountContent);
-  /*amountSpan.classList.add("cart-col");
-  amountSpan.classList.add("cart-Col-price");*/
-  containerSection.appendChild(amountSpan);
+  return amountSpan;
+}
 
-  let addButton = document.createElement("button");
-  addButton.setAttribute("data-product-id", item.id);
-  addButton.classList.add("cart-col");
-  addButton.classList.add("cart-Col-add");
-  addButton.classList.add("btn");
-  let plus = document.createTextNode("+");
-  addButton.appendChild(plus);
-  containerSection.appendChild(addButton);
+function crt_btn(item, cls, ct) {
+  let css_b = "cart-Col";
+  let css_s = css_b + "-" + cls;
+  let btn = document.createElement("button");
+  btn.setAttribute("data-product-id", item.id);
+  btn.classList.add(css_b);
+  btn.classList.add(css_s);
 
+  let txt = document.createTextNode(ct);
+  btn.appendChild(txt);
+  return btn;
+}
 
+function crt_price(item, cls) {
+  let vdiv = get_element_div(cls);
   let productPrice = document.createElement("p");
   productPrice.setAttribute("data-product-id", item.id);
-
 
   let productPriceSpan = document.createElement("span");
   let productPriceSpanContent = document.createTextNode(
     "" + item.amount * item.price
   );
   productPriceSpan.appendChild(productPriceSpanContent);
-  productPriceSpan.classList.add("cart-col");
-  productPriceSpan.classList.add("cart-Col-montT");
-  containerSection.appendChild(productPriceSpan);
+  vdiv.appendChild(productPriceSpan);
+  return vdiv;
+}
 
-  //buttonsSection.appendChild(removeButton);
+//createCartItem()
+// create one cart item to be injected in the html
+function createCartItem(item) {
+  let containerSection = document.createElement("div");
+  containerSection.classList.add("crt-one-line");
 
-  /*
-    let amountSpan = document.createElement("span");
-    let amountContent = document.createTextNode(item.amount);
-    amountSpan.appendChild(amountContent);
-  
-    let addButton = document.createElement("button");
-    addButton.setAttribute("data-product-id", item.id);
-    addButton.classList.add("cart-btn");
-    addButton.classList.add("cart-button-add");
-    let plus = document.createTextNode("+");
-    addButton.appendChild(plus);
-  
-    buttonsSection.appendChild(removeButton);
-    buttonsSection.appendChild(amountSpan);
-    buttonsSection.appendChild(addButton);
-  
-    productActions.appendChild(buttonsSection);
-  
-    let productPrice = document.createElement("p");
-    productPrice.setAttribute("data-product-id", item.id);
-    productPrice.classList.add("cart-product-price");
-  
-    let productPriceSpan = document.createElement("span");
-    let productPriceSpanContent = document.createTextNode(
-      "" + item.amount * item.price
-    );
-    productPriceSpan.appendChild(productPriceSpanContent);
-  
-  
-  
-    containerSection.appendChild(productActions);
-    containerSection.appendChild(productPriceSpan);
-    containerSection.appendChild(productPrice);
-  */
+  containerSection.appendChild(crt_img(item, "img"));
+  containerSection.appendChild(crt_info(item, "info"));
+  containerSection.appendChild(crt_action(item, "qt"));
+  containerSection.appendChild(crt_price(item, "unit-price"));
+
   return containerSection;
 }
 
