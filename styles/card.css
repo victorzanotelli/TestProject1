@@ -55,7 +55,7 @@
     cursor: pointer;
 }
 
-.catalog {
+#catalog {
     width:80%;
     padding: 20px;
     margin: 0;
@@ -72,7 +72,7 @@
 
 .catalog-item {
     width: 300px;
-    height: 400px; /* Augmenté pour inclure le bouton */
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,9 +81,9 @@
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #f9f9f9;
-    
+    background-color: #f9f9f9; 
 }
+
 .catalog-item:hover{
     transform: scale(1.05);  
 }
