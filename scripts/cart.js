@@ -30,24 +30,34 @@ function saveCart(cart) {
 
 let fakeCart = {
   totalPrice: 59,
-  itemCount: 3,
+  itemCount: 4,
   items: [
     {
       id: 12,
       imageUrl: "https://picsum.photos/id/1025/50/50",
+      name: "portable 34532 Tochi",
       price: 23,
       amount: 1,
     },
     {
       id: 23,
       imageUrl: "https://picsum.photos/id/823/50/50",
-      price: 17,
+      name: "portable 4587 Del",
+      price: 17.50,
       amount: 1,
     },
     {
       id: 42,
       imageUrl: "https://picsum.photos/id/742/50/50",
+      name: "portable 893 Del spiron",
       price: 19,
+      amount: 1,
+    },
+    {
+      id: 44,
+      imageUrl: "https://picsum.photos/200/300?random=1",
+      name: "portable V game Boef",
+      price: 100,
       amount: 1,
     },
   ],
@@ -65,21 +75,21 @@ function renderCart() {
   let cart = getCart();
 
   // remove the ul
-  let productList = document.querySelector("body > main");
-  let ulToRemove = document.querySelector("body > main > ul");
+  let productList = document.querySelector("body > main >  aside > section");
+  let ulToRemove = document.querySelector("body > main > aside > section > ul");
 
   productList.removeChild(ulToRemove);
   // class="basket-container"
   // create the new ul
   let newUl = document.createElement("ul");
-  newUl.classList.add("crt-lines");
+  newUl.classList.add("tableau");
   // create the lis
   for (let i = 0; i < cart.items.length; i++) {
+    let css_b = "cart-Col";
     if (cart.items[i].amount > 0) {
       let item = cart.items[i];
-      let li = document.createElement("li");
-      li.appendChild(createCartItem(item)); // append them
-      newUl.appendChild(li);
+
+      newUl.appendChild(createCartItem(item));
     }
   }
 
@@ -92,63 +102,57 @@ function renderCart() {
   loadListeners();
 }
 
-function get_element_div(cls) {
+function new_element_col(cls) {
   let vdiv = document.createElement("div");
-  let css_b = "cart-Col";
-  let css_s = css_b + "-" + cls;
-  vdiv.classList.add(css_b);
-  vdiv.classList.add(css_s);
+  //let clsBasic = "crt-col";
+  //vdiv.classList.add(clsBasic);
+  vdiv.classList.add(cls);
+
   return vdiv;
 }
 
 function crt_img(item, cls) {
+  let vdiv = new_element_col(cls);
+
   let img = document.createElement("img");
   img.setAttribute("alt", "image du produit " + item.id);
   img.setAttribute("src", item.imageUrl);
-  let vdiv = get_element_div(cls);
   vdiv.appendChild(img);
+  //vdiv.classList.add("img-w");
   return vdiv;
 }
 
-function crt_info(item, cls) {
-  let vdiv = get_element_div(cls);
+
+
+function crt_text(textvalue, cls) {
+  let vdiv = new_element_col(cls);
   let productInfodiv = document.createElement("span");
   // creating the product info
-  let productInfo = document.createElement("h3");
-  let productNameContent = document.createTextNode("Nom du produit " + item.id);
+  let productInfo = document.createElement("p");
+  //productInfo.classList.add("cart");
+  let productNameContent = document.createTextNode(textvalue);
   productInfo.appendChild(productNameContent);
-  //let productNameContent = document.createTextNode("Nom du produit " + item.id);
   productInfodiv.appendChild(productInfo);
   vdiv.appendChild(productInfodiv);
   return vdiv;
 }
 
+
 function crt_action(item, cls) {
-  let vdiv = get_element_div(cls);
-  vdiv.appendChild(crt_btn(item, "minus", "-"));
-  vdiv.appendChild(crt_qt(item, "qt"));
-  vdiv.appendChild(crt_btn(item, "add", "+"));
+  let vdiv = new_element_col(cls);
+  vdiv.appendChild(crt_btn(item, "cart-Col-add", "+"));
+  vdiv.appendChild(crt_text(item.amount, "qt"));
+  vdiv.appendChild(crt_btn(item, "cart-Col-minus", "-"));
   return vdiv;
 }
 
-function crt_qt(item, cls) {
-  let css_b = "cart-Col";
-  let css_s = css_b + "-" + cls;
-  let amountSpan = document.createElement("span");
-  amountSpan.classList.add(css_b);
-  amountSpan.classList.add(css_s);
-  let amountContent = document.createTextNode(item.amount);
-  amountSpan.appendChild(amountContent);
-  return amountSpan;
-}
+
 
 function crt_btn(item, cls, ct) {
-  let css_b = "cart-Col";
-  let css_s = css_b + "-" + cls;
+
   let btn = document.createElement("button");
   btn.setAttribute("data-product-id", item.id);
-  btn.classList.add(css_b);
-  btn.classList.add(css_s);
+  btn.classList.add(cls);
 
   let txt = document.createTextNode(ct);
   btn.appendChild(txt);
@@ -156,13 +160,13 @@ function crt_btn(item, cls, ct) {
 }
 
 function crt_price(item, cls) {
-  let vdiv = get_element_div(cls);
-  let productPrice = document.createElement("p");
-  productPrice.setAttribute("data-product-id", item.id);
+  let vdiv = new_element_col(cls);
+
 
   let productPriceSpan = document.createElement("span");
+
   let productPriceSpanContent = document.createTextNode(
-    "" + item.amount * item.price
+    "" + (item.amount * item.price).toFixed(2)
   );
   productPriceSpan.appendChild(productPriceSpanContent);
   vdiv.appendChild(productPriceSpan);
@@ -172,15 +176,14 @@ function crt_price(item, cls) {
 //createCartItem()
 // create one cart item to be injected in the html
 function createCartItem(item) {
-  let containerSection = document.createElement("div");
-  containerSection.classList.add("crt-one-line");
+  let li = document.createElement("li");
+  li.classList.add("cols");
+  li.appendChild(crt_img(item, "col1"));
+  li.appendChild(crt_text(item.name, "col2"));
+  li.appendChild(crt_action(item, "col3"));
+  li.appendChild(crt_price(item, "col4"));
 
-  containerSection.appendChild(crt_img(item, "img"));
-  containerSection.appendChild(crt_info(item, "info"));
-  containerSection.appendChild(crt_action(item, "qt"));
-  containerSection.appendChild(crt_price(item, "unit-price"));
-
-  return containerSection;
+  return li;
 }
 
 // loadListeners() est la fonction qui va nous permettre d’écouter les clics
@@ -240,7 +243,7 @@ function computeCartTotal() {
     price += cart.items[i].price * cart.items[i].amount;
   }
 
-  cart.totalPrice = price;
+  cart.totalPrice = price.toFixed(2);
   saveCart(cart);
 }
 
@@ -260,3 +263,36 @@ function removeItem(event) {
     renderCart();
   }
 }
+/*
+$(function () {
+  $(".img-w").each(function () {
+    $(this).wrap("<div class='img-c'></div>");
+    let imgSrc = $(this).find("img").attr("src");
+    $(this).css("background-image", "url(" + imgSrc + ")");
+  });
+
+  $(".img-c").click(function () {
+    let w = $(this).outerWidth();
+    let h = $(this).outerHeight();
+    let x = $(this).offset().left;
+    let y = $(this).offset().top;
+
+    $(".active").not($(this)).remove();
+    let copy = $(this).clone();
+    copy.insertAfter($(this)).height(h).width(w).delay(500).addClass("active");
+    $(".active").css("top", y - 8);
+    $(".active").css("left", x - 8);
+
+    setTimeout(function () {
+      copy.addClass("positioned");
+    }, 0);
+  });
+});
+
+$(document).on("click", ".img-c.active", function () {
+  let copy = $(this);
+  copy.removeClass("positioned active").addClass("postactive");
+  setTimeout(function () {
+    copy.remove();
+  }, 500);
+});*/
