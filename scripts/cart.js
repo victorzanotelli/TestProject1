@@ -1,13 +1,23 @@
 // init the cart with either data from session storage or the demo data
 // source https://gaellan.github.io/javascript/2022/08/30/ecommerce-cart-with-js-modules.html
 
-import { getTheFakeBd } from "./fakeProducts.js";
+//import { getTheFakeBd } from "./fakeProducts.js";
 //const TheFakeBdd = localStorage.getItem('myFakeBdd');;
+const mybdproduct = getProducts();
 function initCart() {
+  console.log(mybdproduct.products.length);
+
   if (getCart() === null) {
     // if cart session storage doesn't exist create it
-    saveCart(buildFakeCart());
+    saveCart(fakeCart);
   }
+
+  // myDb = sessionStorage.getItem("bdd");
+  // if (myDb == null) {
+  //   // initFakeProducts();
+  //   myDb = sessionStorage.getItem("bdd");
+  //   console.log(myDb);
+  // } else console.log("Failed to load bdd");
 
   renderCart();
 }
@@ -20,6 +30,9 @@ export { initCart };
 function getCart() {
   return JSON.parse(sessionStorage.getItem("cart"));
 }
+function getProducts() {
+  return JSON.parse(sessionStorage.getItem("bdd"));
+}
 
 //La fonction saveCart() va nous permettre de sauvegarder l’état actuel du panier que nous stockons>>
 // update the cart in session storage
@@ -31,17 +44,18 @@ function saveCart(cart) {
 //que nous utilisons pour faire notre démonstration. Dans un vrai site il serait relié,
 //via des appels à fetch au panier réel de notre client-e.
 
+// function buildFakeCart() {
+//   let bd = getTheFakeBd();
+//   console.log(bd);
+//   let fakeProductCart = {
+//     totalPrice: 59,
+//     itemCount: 4,
+//     items: [bd[0], bd[1], bd[3], bd[6]],
+//   };
+//   return fakeProductCart;
+// }
 
-function buildFakeCart() {
-  let bd = getTheFakeBd();
-  console.log(bd);
-  let fakeProductCart = {
-    totalPrice: 59,
-    itemCount: 4,
-    items: [bd[0], bd[1], bd[3], bd[6]]
-  }
-  return fakeProductCart;
-}
+
 
 
 let fakeCart = {
@@ -49,31 +63,34 @@ let fakeCart = {
   itemCount: 4,
   items: [
     {
+
       id: 12,
-      imageUrl: "https://picsum.photos/id/1025/50/50",
+      Url: "https://picsum.photos/id/1025/50/50",
       name: "portable 34532 Tochi",
-      price: 23,
-      amount: 1,
+      price: 487,
+      amount: 1
+
+
     },
     {
       id: 23,
-      imageUrl: "https://picsum.photos/id/823/50/50",
+      Url: "https://picsum.photos/id/823/50/50",
       name: "portable 4587 Del",
-      price: 17.5,
+      price: 358,
       amount: 1,
     },
     {
       id: 42,
-      imageUrl: "https://picsum.photos/id/742/50/50",
+      Url: "https://picsum.photos/id/742/50/50",
       name: "portable 893 Del spiron",
-      price: 19,
+      price: 487,
       amount: 1,
     },
     {
       id: 44,
-      imageUrl: "https://picsum.photos/200/300?random=1",
+      Url: "https://picsum.photos/200/300?random=1",
       name: "portable V game Boef",
-      price: 100,
+      price: 789,
       amount: 1,
     },
   ],
@@ -89,6 +106,7 @@ let fakeCart = {
 // display the cart
 function renderCart() {
   // retrieve the cart
+
   let cart = getCart();
 
   // remove the ul
@@ -99,36 +117,37 @@ function renderCart() {
   // class="basket-container"
   // create the new ul
   let newUl = document.createElement("ul");
-  newUl.classList.add("tableau");
-  // create the lis
-  if (cart.items.length !== 0) {
-    for (let i = 0; i < cart.items.length; i++) {
-      let css_b = "cart-Col";
-      // ici //
-      if (cart.items[i].price > 0) {
-        let item = cart.items[i];
+  if (cart.items) {
+    newUl.classList.add("tableau");
+    // create the lis
 
-        newUl.appendChild(createCartItem(item));
-        productList.appendChild(newUl);
-        let totalPrice = document.getElementById("cart-total-price");
-        totalPrice.innerText = "Total : " + cart.totalPrice + " €";
+    if (cart.items.length !== 0) {
+      for (let i = 0; i < cart.items.length; i++) {
+
+
+        if (cart.items[i].amount > 0) {
+          let item = cart.items[i];
+
+          newUl.appendChild(createCartItem("lg", item));
+          productList.appendChild(newUl);
+
+        }
+        else {
+          cart.items.slice(i, 1)
+        }
       }
+      newUl.appendChild(createCartItem("fo", null));
+
+    } else {
+      newUl.innerHTML = "Votre panier est vide";
+      productList.appendChild(newUl);
     }
+
+    let totalPrice = document.getElementById("cart-total-price");
+    totalPrice.innerText = cart.totalPrice + " €";
+    saveCart(cart)
+    // update cart total price
   }
-  else {
-
-    newUl.innerHTML = "Votre panier est vide";
-    productList.appendChild(newUl);
-    //let totalPrice = document.getElementById("cart-total-price");
-    //totalPrice.innerText = "Total : " + cart.totalPrice + " €";
-  }
-  console.log("nb product", getTheFakeBd());
-
-
-
-  // update cart total price
-
-
   loadListeners();
 }
 
@@ -141,12 +160,12 @@ function new_element_col(cls) {
   return vdiv;
 }
 
-function crt_img(item, cls) {
+function crt_img(url, id, cls) {
   let vdiv = new_element_col(cls);
 
   let img = document.createElement("img");
-  img.setAttribute("alt", "image du produit " + item.id);
-  img.setAttribute("src", item.imageUrl);
+  img.setAttribute("alt", "produit " + id);
+  img.setAttribute("src", url);
   vdiv.appendChild(img);
   //vdiv.classList.add("img-w");
   return vdiv;
@@ -165,10 +184,10 @@ function crt_text(textvalue, cls) {
   return vdiv;
 }
 
-function crt_action(item, cls) {
+function crt_action(item, amount, cls) {
   let vdiv = new_element_col(cls);
   vdiv.appendChild(crt_btn(item, "cart-Col-add", "+"));
-  vdiv.appendChild(crt_text(item.amount, "qt"));
+  vdiv.appendChild(crt_text(amount, "qt"));
   vdiv.appendChild(crt_btn(item, "cart-Col-minus", "-"));
   return vdiv;
 }
@@ -183,32 +202,50 @@ function crt_btn(item, cls, ct) {
   return btn;
 }
 
-function crt_price(item, cls) {
+function crt_price(amount, price, cls, id) {
   let vdiv = new_element_col(cls);
 
   let productPriceSpan = document.createElement("span");
-
+  if (id !== "") {
+    productPriceSpan.setAttribute("id", id);
+  }
   let productPriceSpanContent = document.createTextNode(
-    "" + (item.amount * item.price).toFixed(2)
+    "" + (amount * price).toFixed(2)
   );
+
+
+
   productPriceSpan.appendChild(productPriceSpanContent);
+
   vdiv.appendChild(productPriceSpan);
+
   return vdiv;
 }
 
+
+
 //createCartItem()
 // create one cart item to be injected in the html
-function createCartItem(item) {
-  let li = document.createElement("li");
-  li.classList.add("cols");
-  li.appendChild(crt_img(item, "col1"));
-  li.appendChild(crt_text(item.name, "col2"));
-  li.appendChild(crt_action(item, "col3"));
-  li.appendChild(crt_price(item, "col4"));
+function createCartItem(type, item) {
 
+  let li = document.createElement("li");
+
+  switch (type) {
+    case 'lg':
+      li.classList.add("cols");
+      li.appendChild(crt_img(item.id, item.url, "col1"));
+      li.appendChild(crt_text(item.name, "col2"));
+      li.appendChild(crt_action(item, item.amount, "col3"));
+      li.appendChild(crt_price(item.amount, item.price, "col4", ""));
+      break;
+    case 'fo':
+      li.classList.add("fooCols");
+      li.appendChild(crt_text("Total :", "Col_LabTotal"));
+      li.appendChild(crt_price(1, "€€€", "Col_TotalPrice", "cart-total-price"));
+
+  }
   return li;
 }
-
 // loadListeners() est la fonction qui va nous permettre d’écouter les clics
 //sur tout nos boutons d’ajout ou retrait de quantité d’articles dans le panier.
 function loadListeners() {
@@ -229,8 +266,10 @@ function addItem(event) {
 
   if (itemKey !== null) {
     cart.items[itemKey].amount += 1;
+
     saveCart(cart);
     computeCartTotal();
+
     renderCart();
   }
 }
