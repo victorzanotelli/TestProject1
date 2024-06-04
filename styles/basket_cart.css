@@ -53,13 +53,14 @@
   /*background-color: aqua;*/
   display: inline-block;
   text-wrap: wrap;
+
   width: 60%;
 }
 
 .col2>span {
   border-radius: 5px;
   padding: 20px 60px;
-  font-size: small;
+  font-size: 20px;
 
 }
 

@@ -142,7 +142,8 @@ function renderCart() {
       newUl.innerHTML = "Votre panier est vide";
       productList.appendChild(newUl);
     }
-
+    computeCartTotal(); //
+    cart = getCart();
     let totalPrice = document.getElementById("cart-total-price");
     totalPrice.innerText = cart.totalPrice + " €";
     saveCart(cart)
