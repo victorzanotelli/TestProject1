@@ -1,9 +1,12 @@
 // init the cart with either data from session storage or the demo data
 // source https://gaellan.github.io/javascript/2022/08/30/ecommerce-cart-with-js-modules.html
+
+import { getTheFakeBd } from "./fakeProducts.js";
+//const TheFakeBdd = localStorage.getItem('myFakeBdd');;
 function initCart() {
   if (getCart() === null) {
     // if cart session storage doesn't exist create it
-    saveCart(fakeCart);
+    saveCart(buildFakeCart());
   }
 
   renderCart();
@@ -28,6 +31,19 @@ function saveCart(cart) {
 //que nous utilisons pour faire notre démonstration. Dans un vrai site il serait relié,
 //via des appels à fetch au panier réel de notre client-e.
 
+
+function buildFakeCart() {
+  let bd = getTheFakeBd();
+  console.log(bd);
+  let fakeProductCart = {
+    totalPrice: 59,
+    itemCount: 4,
+    items: [bd[0], bd[1], bd[3], bd[6]]
+  }
+  return fakeProductCart;
+}
+
+
 let fakeCart = {
   totalPrice: 59,
   itemCount: 4,
@@ -43,7 +59,7 @@ let fakeCart = {
       id: 23,
       imageUrl: "https://picsum.photos/id/823/50/50",
       name: "portable 4587 Del",
-      price: 17.50,
+      price: 17.5,
       amount: 1,
     },
     {
@@ -62,6 +78,7 @@ let fakeCart = {
     },
   ],
 };
+
 // this cart is for demonstration purposes only,
 // it should be replaced by the real thing
 
@@ -84,20 +101,33 @@ function renderCart() {
   let newUl = document.createElement("ul");
   newUl.classList.add("tableau");
   // create the lis
-  for (let i = 0; i < cart.items.length; i++) {
-    let css_b = "cart-Col";
-    if (cart.items[i].amount > 0) {
-      let item = cart.items[i];
+  if (cart.items.length !== 0) {
+    for (let i = 0; i < cart.items.length; i++) {
+      let css_b = "cart-Col";
+      // ici //
+      if (cart.items[i].price > 0) {
+        let item = cart.items[i];
 
-      newUl.appendChild(createCartItem(item));
+        newUl.appendChild(createCartItem(item));
+        productList.appendChild(newUl);
+        let totalPrice = document.getElementById("cart-total-price");
+        totalPrice.innerText = "Total : " + cart.totalPrice + " €";
+      }
     }
   }
+  else {
 
-  productList.appendChild(newUl);
+    newUl.innerHTML = "Votre panier est vide";
+    productList.appendChild(newUl);
+    //let totalPrice = document.getElementById("cart-total-price");
+    //totalPrice.innerText = "Total : " + cart.totalPrice + " €";
+  }
+  console.log("nb product", getTheFakeBd());
+
+
 
   // update cart total price
-  let totalPrice = document.getElementById("cart-total-price");
-  totalPrice.innerText = "Total : " + cart.totalPrice + " €";
+
 
   loadListeners();
 }
@@ -122,8 +152,6 @@ function crt_img(item, cls) {
   return vdiv;
 }
 
-
-
 function crt_text(textvalue, cls) {
   let vdiv = new_element_col(cls);
   let productInfodiv = document.createElement("span");
@@ -137,7 +165,6 @@ function crt_text(textvalue, cls) {
   return vdiv;
 }
 
-
 function crt_action(item, cls) {
   let vdiv = new_element_col(cls);
   vdiv.appendChild(crt_btn(item, "cart-Col-add", "+"));
@@ -146,10 +173,7 @@ function crt_action(item, cls) {
   return vdiv;
 }
 
-
-
 function crt_btn(item, cls, ct) {
-
   let btn = document.createElement("button");
   btn.setAttribute("data-product-id", item.id);
   btn.classList.add(cls);
@@ -161,7 +185,6 @@ function crt_btn(item, cls, ct) {
 
 function crt_price(item, cls) {
   let vdiv = new_element_col(cls);
-
 
   let productPriceSpan = document.createElement("span");
 
@@ -263,36 +286,3 @@ function removeItem(event) {
     renderCart();
   }
 }
-/*
-$(function () {
-  $(".img-w").each(function () {
-    $(this).wrap("<div class='img-c'></div>");
-    let imgSrc = $(this).find("img").attr("src");
-    $(this).css("background-image", "url(" + imgSrc + ")");
-  });
-
-  $(".img-c").click(function () {
-    let w = $(this).outerWidth();
-    let h = $(this).outerHeight();
-    let x = $(this).offset().left;
-    let y = $(this).offset().top;
-
-    $(".active").not($(this)).remove();
-    let copy = $(this).clone();
-    copy.insertAfter($(this)).height(h).width(w).delay(500).addClass("active");
-    $(".active").css("top", y - 8);
-    $(".active").css("left", x - 8);
-
-    setTimeout(function () {
-      copy.addClass("positioned");
-    }, 0);
-  });
-});
-
-$(document).on("click", ".img-c.active", function () {
-  let copy = $(this);
-  copy.removeClass("positioned active").addClass("postactive");
-  setTimeout(function () {
-    copy.remove();
-  }, 500);
-});*/
