@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }else{
         console.log("produit non present dans le panier");
-        cart.items.push({id : cart_prod_id,Url : cart_prod_img, name : cart_prod_name, price : cart_prod_price, amount : cart_prod_qty});
+        cart.items.push({id : cart_prod_id, url : cart_prod_img, name : cart_prod_name, price : cart_prod_price, amount : cart_prod_qty});
       }
 
     }
@@ -193,11 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
         itemCount: 0,
         items: [],
       }
-      cart.items.push({id : cart_prod_id,Url : cart_prod_img, name : cart_prod_name, price : cart_prod_price, amount : cart_prod_qty});
+      cart.items.push({id : cart_prod_id,url : cart_prod_img, name : cart_prod_name, price : cart_prod_price, amount : cart_prod_qty});
         
     }
     console.log('%cscripts\card.js:202 cart updated = ', 'color: #007acc;', cart);
     sessionStorage.setItem("cart",JSON.stringify(cart));
+    modalEl.style.display = "none";
+    qty.innerHTML = 1;
   });
 
 
@@ -210,5 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // hide modal modal
   closeModal.addEventListener("click", () => {
     modalEl.style.display = "none";
+    qty.innerHTML = 1;
   });
 });
