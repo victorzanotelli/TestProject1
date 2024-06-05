@@ -126,6 +126,9 @@ function renderCart() {
           cart.items.slice(i, 1);
         }
       }
+      if (therIsReduc() === 0.8) {
+        newUl.appendChild(createCartItem("reduc", null));
+      }
       newUl.appendChild(createCartItem("fo", null));
     } else {
       newUl.innerHTML = "Votre panier est vide";
@@ -219,15 +222,25 @@ function createCartItem(type, item) {
     case "lg":
       li.classList.add("cols");
       console.log(item);
-      li.appendChild(crt_img(item.id, item.url, "col1"));
+      li.appendChild(crt_img(item.url, item.id, "col1"));
       li.appendChild(crt_text(item.name, "col2"));
       li.appendChild(crt_action(item, item.amount, "col3"));
       li.appendChild(crt_price(item.amount, item.price, "col4", ""));
+
       break;
     case "fo":
       li.classList.add("fooCols");
       li.appendChild(crt_text("Total :", "Col_LabTotal"));
       li.appendChild(crt_price(1, "€€€", "Col_TotalPrice", "cart-total-price"));
+      break;
+    case "reduc":
+      li.classList.add("fooReduc");
+      li.appendChild(crt_text("Réduction membre :", "Col_LabTotal"));
+      li.appendChild(crt_text("20%", "col4"));
+
+      break;
+
+
   }
   return li;
 }
@@ -242,6 +255,7 @@ function loadListeners() {
     removeButtons[i].addEventListener("click", removeItem);
   }
 }
+
 
 //addItem() est la fonction qui permet d’augmenter de 1 la quantité d’un produit dans le panier :
 function addItem(event) {
@@ -289,8 +303,12 @@ function computeCartTotal() {
   for (let i = 0; i < cart.items.length; i++) {
     price += cart.items[i].price * cart.items[i].amount;
   }
-
-  cart.totalPrice = price.toFixed(2);
+  let reduc = therIsReduc();
+  if (!isNaN(reduc))
+    cart.totalPrice = (price * reduc).toFixed(2);
+  else {
+    cart.totalPrice = price.toFixed(2);
+  }
   saveCart(cart);
 }
 
@@ -309,4 +327,11 @@ function removeItem(event) {
     computeCartTotal();
     renderCart();
   }
+}
+
+function therIsReduc() {
+  let reduc = 1;
+  const connect = localStorage.getItem("connect");
+  if (connect === "true") { reduc = 0.8; }
+  return reduc;
 }
