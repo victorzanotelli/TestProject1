@@ -19,7 +19,45 @@
                 <a href="index.html">Accueil</a>
                 <a href="#" class="active">Catalogue</a>
                 <a href="connexion.html">Connexion</a>
-                <a href="panier.html">Panier</a>
+                <a href="panier.html">
+                    <div class="cart_content">
+                        <img src="./img/cart_arrow_down_icon.svg" alt="" />
+                        <span class="qty_label">0</span>
+                        <div class="cart_box">
+                            <p class="box_header">Cart</p>
+                            <div class="pro_content">
+                                <div id="1" class="catalog-item" data-category="asus" data-price="price-low">
+                                    <div class="product-name">Asus Vivobook 15</div>
+                                    <div class="product-img"><img src="img/1.jpg" alt="Asus Vivobook 15"></div>
+                                    <div class="product-desc">
+                                        <p>Découvrez des couleurs à votre image Reflétant l'audace de la jeunesse, le
+                                            ASUS Vivobook vous aide à exprimer votre vraie nature. Doté de performances
+                                            de pointe, d'une charnière ErgoLift innovante et d'un écran NanoEdge, il
+                                            vous permet d'abattre quantité de travail.</p>
+                                    </div>
+                                    <div class="product-price">
+                                        <div>Prix : </div>
+                                        <div>469€</div>
+                                    </div>
+                                </div>
+                                <!-- <img src="/images/image-product-1-thumbnail.jpg" alt="" />
+                        <div class="p_details">
+                          <p class="pro_txt">ll Limited Edition Sneakers</p>
+                          <p class="price">
+                            $125.00 <span>x</span><span class="times"> 3</span>
+                            <span class="total">$375</span>
+                          </p>
+                        </div>
+                        <div class="trash">
+                          <img src="/images/icon-delete.svg" alt="" class="trash_img" />
+                        </div> -->
+                            </div>
+                            <div class="cart_empty">
+                                <p>Your cart is empty :)</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </nav>
         <!-- barre de navigation mobile -->
@@ -54,6 +92,7 @@
         </div>
         <div class="main-container">
             <div id="catalog">
+                <!-- <div id="1" class="catalog-item" data-category="asus" data-price="price-low"><div class="product-name">Asus Vivobook 15</div><div class="product-img"><img src="img/1.jpg" alt="Asus Vivobook 15"></div><div class="product-desc"><p>Découvrez des couleurs à votre image Reflétant l'audace de la jeunesse, le ASUS Vivobook vous aide à exprimer votre vraie nature. Doté de performances de pointe, d'une charnière ErgoLift innovante et d'un écran NanoEdge, il vous permet d'abattre quantité de travail.</p></div><div class="product-price"><div>Prix : </div><div>469€</div></div></div> -->
                 <!-- <div class="catalog-item" data-category="acer" data-price="price-medium">
                     <div class="product-name">Acer Aspire 3</div>
                     <div class="product-img"><img src="img/3.png" alt="acer aspire 3"></div>
@@ -61,13 +100,50 @@
                     <div class="product-price"><div>Prix : </div><div>499€</div></div>
                      <div class="product-add"><button class="add-to-cart">Ajouter au panier</button></div>         
                 </div> -->
-                
             </div>
-        </div>
-        <div class="cart">
+            <div class="modal">
+                <div class="modal_wrapper">
+                    <img src="./img/close-icon.svg" alt="" class="close_icon" />
+                    <div class="producat_content">
+                        <div class="modalLeft">
+                            <div class="modal_product_img"></div>
+                        </div>
+                        <div class="modalRight">
+                            <p class="company_txt"></p>
+                            <h2 class="modal_product_name"></h2>
+                            <p class="producat_des"></p>
+                            <div class="price">
+                                <div class="dicscount_price">
+                                    <p class="normal_price"></p>
+                                </div>
+                                <p class="total_price"></p>
+                            </div>
+                            <div class="qty">
+                                <div class="btns">
+                                    <button type="button" class="decreament">-</button>
+                                    <button type="input" class="qty_numbers">1</button>
+                                    <button type="button" class="increament">+</button>
+                                </div>
+                                <button class="add_cart" type="button">
+                                    <span>
+                                        <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                                                fill="#ffffff" fill-rule="nonzero" />
+                                        </svg>
+                                    </span>
+                                    <p>Ajouter au panier</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="cart">
             <h2>Panier</h2>
             <ul id="cart-items"></ul>
-        </div>
+        </div> -->
     </main>
 
     <footer>
