@@ -54,23 +54,17 @@ function saveCart(cart) {
 //   };
 //   return fakeProductCart;
 // }
-
-
-
-
-let fakeCart = {
+let fakeCart = {};
+let fakeCart1 = {
   totalPrice: 59,
   itemCount: 4,
   items: [
     {
-
       id: 12,
       Url: "https://picsum.photos/id/1025/50/50",
       name: "portable 34532 Tochi",
       price: 487,
-      amount: 1
-
-
+      amount: 1,
     },
     {
       id: 23,
@@ -123,21 +117,16 @@ function renderCart() {
 
     if (cart.items.length !== 0) {
       for (let i = 0; i < cart.items.length; i++) {
-
-
         if (cart.items[i].amount > 0) {
           let item = cart.items[i];
 
           newUl.appendChild(createCartItem("lg", item));
           productList.appendChild(newUl);
-
-        }
-        else {
-          cart.items.slice(i, 1)
+        } else {
+          cart.items.slice(i, 1);
         }
       }
       newUl.appendChild(createCartItem("fo", null));
-
     } else {
       newUl.innerHTML = "Votre panier est vide";
       productList.appendChild(newUl);
@@ -146,7 +135,7 @@ function renderCart() {
     cart = getCart();
     let totalPrice = document.getElementById("cart-total-price");
     totalPrice.innerText = cart.totalPrice + " €";
-    saveCart(cart)
+    saveCart(cart);
     // update cart total price
   }
   loadListeners();
@@ -214,8 +203,6 @@ function crt_price(amount, price, cls, id) {
     "" + (amount * price).toFixed(2)
   );
 
-
-
   productPriceSpan.appendChild(productPriceSpanContent);
 
   vdiv.appendChild(productPriceSpan);
@@ -223,27 +210,24 @@ function crt_price(amount, price, cls, id) {
   return vdiv;
 }
 
-
-
 //createCartItem()
 // create one cart item to be injected in the html
 function createCartItem(type, item) {
-
   let li = document.createElement("li");
 
   switch (type) {
-    case 'lg':
+    case "lg":
       li.classList.add("cols");
+      console.log(item);
       li.appendChild(crt_img(item.id, item.url, "col1"));
       li.appendChild(crt_text(item.name, "col2"));
       li.appendChild(crt_action(item, item.amount, "col3"));
       li.appendChild(crt_price(item.amount, item.price, "col4", ""));
       break;
-    case 'fo':
+    case "fo":
       li.classList.add("fooCols");
       li.appendChild(crt_text("Total :", "Col_LabTotal"));
       li.appendChild(crt_price(1, "€€€", "Col_TotalPrice", "cart-total-price"));
-
   }
   return li;
 }

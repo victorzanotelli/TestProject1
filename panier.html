@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/card.css">
     <link rel="stylesheet" href="styles/basket.css">
     <link rel="stylesheet" href="styles/basket_cart.css">
+    <link rel="stylesheet" href="styles/connect.css">
 
     <title>Panier</title>
 </head>
@@ -22,13 +23,15 @@
             <div class="topnav">
                 <a href="index.html">Accueil</a>
                 <a href="catalogue.html">Catalogue</a>
-                <a href="connexion.html">Connexion</a>
+                <a href="connexion.html" class="open-button">Connexion</a>
                 <a href="#" class="active">Panier</a>
             </div>
         </nav>
         <!-- barre de navigation mobile -->
     </header>
     <main>
+        <div id="loginForm">
+        </div>
         <aside class="basket">
             <div class="basket_header">
                 <h2> Mon panier </h2>
@@ -51,6 +54,8 @@
     </main>
     <script type="module" src="./scripts/product.js"></script>
     <script type="module" src="./scripts/basket.js"></script>
+    <script  src="./scripts/popup.js"></script>
+    <script  src="./scripts/connect.js"></script>
  
 
     <footer>
