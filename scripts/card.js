@@ -163,27 +163,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //add to carts
   btnAddCart.addEventListener("click", () => {
-    qtyLable.style.display = "block";
-    qtyLable.innerHTML = totalQty;
-    proContainer.innerHTML = "";
-    let html = `<img src="./images/image-product-1-thumbnail.jpg" alt="" />
-  <div class="p_details">
-    <p class="pro_txt">Fall Limited Edition Sneakers</p>
-    <p class="price">
-      $125.00 <span>x</span><span class="times">${totalQty}</span>
-      $<span class="total">${totalPrice}</span>
-    </p>
-  </div>
-  <div class="trash">
-    <img src="./images/icon-delete.svg" alt="" class="trash_img" />
-  </div>`;
-    proContainer.insertAdjacentHTML("afterbegin", html);
-    cartEmpty.innerHTML = "";
-    document.querySelector(".trash_img").addEventListener("click", () => {
-      cartEmpty.innerHTML = "Your cart is empty :)";
-      proContainer.innerHTML = "";
-      qtyLable.style.display = "none";
-    });
+    let cart_prod_id = currentProduct.id;
+    let cart_prod_img = currentProduct.img;
+    let cart_prod_name = currentProduct.name;
+    let cart_prod_price = currentProduct.price;
+    let cart_prod_qty = parseInt(qty.textContent);
+    console.log('%cscripts\card.js:166 ajout panier"', 'color: #007acc;', "ajout panier");
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+    if(cart != null){
+      console.log('%cscripts\card.js:174 "recuperation du panier"', 'color: #007acc;', "recuperation du panier");
+
+      if(cart.items.find((e)=> e.id == currentProduct.id) != undefined){
+        console.log("produit deja présent dans le panier");
+        for (let index = 0; index < cart.items.length; index++) {
+          if(cart_prod_id == cart.items[index].id)
+            cart.items[index].amount += cart_prod_qty;  
+        }
+
+      }else{
+        console.log("produit non present dans le panier");
+        cart.items.push({id : cart_prod_id,Url : cart_prod_img, name : cart_prod_name, price : cart_prod_price, amount : cart_prod_qty});
+      }
+
+    }
+    else{
+      console.log('%cscripts\card.js:186 "initialisation du panier"', 'color: #007acc;', "initialisation du panier");
+      cart =  {
+        totalPrice: 0,
+        itemCount: 0,
+        items: [],
+      }
+      cart.items.push({id : cart_prod_id,Url : cart_prod_img, name : cart_prod_name, price : cart_prod_price, amount : cart_prod_qty});
+        
+    }
+    console.log('%cscripts\card.js:202 cart updated = ', 'color: #007acc;', cart);
+    sessionStorage.setItem("cart",JSON.stringify(cart));
   });
 
 
