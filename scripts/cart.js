@@ -328,7 +328,7 @@ function removeItem(event) {
 function therIsReduc() {
   let reduc = 1;
   let connect = isConnected();
-  if (connect === "true") {
+  if (connect) {
     reduc = 0.8;
   }
   return reduc;
