@@ -1,28 +1,27 @@
 function setStateConnected() {
-  const is = isConnected();
+  let is = isConnected();
   console.log("connected", is);
-  if (is) {
-    const fbtnCon = document.getElementById("btn-connect");
+  const fbtnCon = document.getElementById("btn-connect");
 
-    if (isConnected()) {
-      fbtnCon.textContent = "Déconnexion";
-      //fbtnCon.setAttribute("href", "javascript:funcDeco()");
-      fbtnCon.addEventListener("click", funcDeco);
-    } else {
-      fbtnCon.textContent = "Connexion";
-      fbtnCon.setAttribute("href", "connexion.html");
-      fbtnCon.removeEventListener(funcDeco);
-    }
+  if (is) {
+    fbtnCon.innerText = "Déconnexion";
+
+    fbtnCon.addEventListener("click", funcDeco);
+  } else {
+    fbtnCon.innerText = "Connexion";
+    fbtnCon.setAttribute("href", "connexion.html");
+    fbtnCon.removeEventListener(funcDeco);
   }
 }
 function isConnected() {
-  return sessionStorage.getItem("connect");
+  return JSON.parse(sessionStorage.getItem("connect"));
 }
 setStateConnected();
 
 function funcDeco(event) {
   event.preventDefault();
   alert("Vous êtes déconnecté...");
-  sessionStorage.setItem("connect", false);
-  setStateConnected();
+  sessionStorage.setItem("connect", JSON.stringify(false));
+
+  document.location.href = "index.html";
 }

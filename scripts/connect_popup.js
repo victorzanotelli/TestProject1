@@ -101,7 +101,7 @@ if (fsubmit) {
 function onCancelForm() {
   //console.log("cancel Form");
   //document.getElementById("popupForm").style.display = "none";
-  //window.location.href = "index.html";
+
   document.location.href = "index.html";
   //history.back();
 }
@@ -115,14 +115,13 @@ function onSubmitForm(event) {
   //console.log("submit");
   if (valuepass && valuemail) {
     if (valuepass.toUpperCase() === "CSSV") {
-      window.alert("Vous êtes connecté");
-      sessionStorage.setItem("connect", "true");
-      document.location.href = "panier.html";
+      sessionStorage.setItem("connect", JSON.stringify(true));
+      document.location.href = "index.html";
     } else {
-      sessionStorage.setItem("connect", "false");
-      window.alert("Vous n'êtes pas connecté");
+      sessionStorage.setItem("connect", JSON.stringify(false));
+      window.alert("Vous n'êtes pas connecté !!");
     }
-
+    setStateConnected();
     //console.log("submit");
   }
 }
