@@ -334,5 +334,5 @@ function therIsReduc() {
   return reduc;
 }
 function isConnected() {
-  return JSON.parse(JsessionStorage.getItem("connect"));
+  return JSON.parse(sessionStorage.getItem("connect"));
 }
