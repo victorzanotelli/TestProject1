@@ -118,7 +118,7 @@ function renderCart() {
     if (cart.items.length !== 0) {
       for (let i = 0; i < cart.items.length; i++) {
         if (cart.items[i].amount > 0) {
-          let item = cart.items[i];
+          let item = cart.items[i];false));false));
 
           newUl.appendChild(createCartItem("lg", item));
           productList.appendChild(newUl);
@@ -239,8 +239,6 @@ function createCartItem(type, item) {
       li.appendChild(crt_text("20%", "col4"));
 
       break;
-
-
   }
   return li;
 }
@@ -255,7 +253,6 @@ function loadListeners() {
     removeButtons[i].addEventListener("click", removeItem);
   }
 }
-
 
 //addItem() est la fonction qui permet d’augmenter de 1 la quantité d’un produit dans le panier :
 function addItem(event) {
@@ -304,8 +301,7 @@ function computeCartTotal() {
     price += cart.items[i].price * cart.items[i].amount;
   }
   let reduc = therIsReduc();
-  if (!isNaN(reduc))
-    cart.totalPrice = (price * reduc).toFixed(2);
+  if (!isNaN(reduc)) cart.totalPrice = (price * reduc).toFixed(2);
   else {
     cart.totalPrice = price.toFixed(2);
   }
@@ -331,7 +327,12 @@ function removeItem(event) {
 
 function therIsReduc() {
   let reduc = 1;
-  const connect = localStorage.getItem("connect");
-  if (connect === "true") { reduc = 0.8; }
+  let connect = isConnected();
+  if (connect === "true") {
+    reduc = 0.8;
+  }
   return reduc;
+}
+function isConnected() {
+  return JSON.parse(JsessionStorage.getItem("connect"));
 }

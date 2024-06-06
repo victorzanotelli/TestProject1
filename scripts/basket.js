@@ -7,3 +7,7 @@ let myDb = null;
 window.addEventListener("DOMContentLoaded", (event) => {
   initCart();
 });
+window.onbeforeunload = function (event) {
+  // Your logic here (e.g., display a warning message)
+  setStateConnected();
+};
