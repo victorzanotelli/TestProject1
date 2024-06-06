@@ -11,3 +11,20 @@ window.onbeforeunload = function (event) {
   // Your logic here (e.g., display a warning message)
   setStateConnected();
 };
+
+const btnretour = document.getElementById('btnContAchat');
+if (btnretour) {
+
+  btnretour.addEventListener('click', () => {
+    //window.location.href = 'catalogue.html';
+    document.location.href = "catalogue.html";
+  });
+}
+
+const btnvaliate = document.getElementById('btnValidCart');
+if (btnvaliate) {
+
+  btnvaliate.addEventListener('click', () => {
+    alert('a venir...');
+  });
+}
