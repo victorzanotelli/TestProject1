@@ -1,6 +1,6 @@
 function setStateConnected() {
   let is = isConnected();
-  console.log("connected", is);
+
   const fbtnCon = document.getElementById("btn-connect");
 
   if (is) {
@@ -10,7 +10,7 @@ function setStateConnected() {
   } else {
     fbtnCon.innerText = "Connexion";
     fbtnCon.setAttribute("href", "connexion.html");
-    fbtnCon.removeEventListener(funcDeco);
+    //fbtnCon.removeEventListener(funcDeco);
   }
 }
 function isConnected() {

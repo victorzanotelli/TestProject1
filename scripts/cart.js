@@ -118,7 +118,7 @@ function renderCart() {
     if (cart.items.length !== 0) {
       for (let i = 0; i < cart.items.length; i++) {
         if (cart.items[i].amount > 0) {
-          let item = cart.items[i];false));false));
+          let item = cart.items[i];
 
           newUl.appendChild(createCartItem("lg", item));
           productList.appendChild(newUl);
