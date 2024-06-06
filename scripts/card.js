@@ -203,10 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateQtyLbl(){
     let cart = JSON.parse(sessionStorage.getItem("cart"));
       let cpt =0;
+      if(cart != null){
+
+      
       for(let i = 0 ; i < cart.items.length; i++){
         cpt += cart.items[i].amount;
       }
-
+    }
       qtyLabel.innerHTML = cpt;
     }
   // hide modal modal
