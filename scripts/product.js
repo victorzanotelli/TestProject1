@@ -39,6 +39,8 @@ class Bdd{
         })
     }
 
+
+
     getPriceRange(priceRange){
         return this.products.filter(element => {
             return element.priceRange === priceRange;
@@ -63,6 +65,21 @@ class Bdd{
         }
 
         return results;
+    }
+    getBrandList(){
+        let brandList = [];
+        for (let index = 0; index < this.products.length; index++) {
+            if(brandList.length > 0){
+                if(brandList.find((e)=>(e === this.products[index].brand)) === undefined)
+                    brandList.push(this.products[index].brand);
+            }
+            else{
+                brandList.push(this.products[index].brand);
+            }
+            
+        }
+        console.log('%cscripts\product.js:81 brandList', 'color: #007acc;', brandList);
+        return brandList;
     }
 };  
 
