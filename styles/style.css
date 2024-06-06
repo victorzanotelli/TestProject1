@@ -123,11 +123,10 @@ main{
   }
   .qty_label {
     position: absolute;
-    top: -2px;
-    right: 95px;
+    top: -5px;
+    right: 0;
     background-color: var(--Orange);
     color: red;
     padding: 02px 7px;
     border-radius: 10px;
-    display: none;
   }
