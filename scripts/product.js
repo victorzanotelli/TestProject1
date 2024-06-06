@@ -70,11 +70,11 @@ class Bdd{
         let brandList = [];
         for (let index = 0; index < this.products.length; index++) {
             if(brandList.length > 0){
-                if(brandList.find((e)=>(e === this.products[index].brand)) === undefined)
-                    brandList.push(this.products[index].brand);
+                if(brandList.find((e)=>(e.name === this.products[index].brand)) === undefined)
+                    brandList.push({name : this.products[index].brand, img :this.products[index].img});
             }
             else{
-                brandList.push(this.products[index].brand);
+                brandList.push({name : this.products[index].brand, img :this.products[index].img});
             }
             
         }

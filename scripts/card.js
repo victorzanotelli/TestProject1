@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cardContent += "<div id=" + bdd.products[i].id + " class=\"product-price\"><div>Prix : </div><div>" + bdd.products[i].price + "€</div></div></div>";
 
     }
+    bdd.getBrandList();
   
     // console.log("html" + cardContent);
     document.getElementById("catalog").innerHTML = cardContent;
