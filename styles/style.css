@@ -9,16 +9,23 @@ body {
 }
 
 header,footer{
+   
     display: flex;
     background-color: #e6e6e6;
 }
 
 header {
-    min-height: 60px;
-    justify-content: flex-end;
+    /*min-height: 60px;*/
+    justify-content:space-between;
     align-items: center;
     box-shadow: 0 1px 8px #ddd;
+    padding-top: 10px;
 }
+.logo{
+   
+    width: 100px;
+  }
+
 
 footer{
     height: 60px;
@@ -130,3 +137,5 @@ main{
     padding: 02px 7px;
     border-radius: 10px;
   }
+
+  
