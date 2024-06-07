@@ -84,6 +84,7 @@ class Bdd{
 };  
 
 const bdd = new Bdd();
+console.log(bdd)
 if(sessionStorage.getItem("bdd") == null)
     sessionStorage.setItem("bdd",JSON.stringify(bdd));
 
