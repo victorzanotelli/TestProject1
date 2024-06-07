@@ -41,6 +41,7 @@
 
 .about .Us {
     max-width: 50%;
+    text-align: justify;
 }
 
 .about .Us p {
